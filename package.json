@@ -1,0 +1,14 @@
+{
+  "name": "user-settings-example",
+  "version": "1.0.0",
+  "description": "User Settings Example",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^20.1.3"
+  }
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Settings Example</title>
+</head>
+
+<body>
+    <h1>User Settings Example</h1>
+
+    <p>
+        <label>Music Folder Path:</label>
+        <input type="text" id="txtPath">
+        <button id="btn-open">Set</button>
+    </p>
+
+    <script src="./js/renderer.js"></script>
+</body>
+
+</html>
