@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
 const fs = require('fs')
 
+// The full file path for the settings file
 const settingsFilePath = app.getPath('userData') + '\\settings.json'
 
 const createWindow = () => {
@@ -34,6 +35,7 @@ function getUserSettings() {
     return data
 }
 
+// Save json string to settings.json file
 function saveSettings(json) {
     fs.writeFile(settingsFilePath, json, function (err) {
         if (err) throw err;
@@ -41,6 +43,7 @@ function saveSettings(json) {
     })
 }
 
+// Hanlder to open the dialog window
 function handleFolderOpen() {
     let folders = dialog.showOpenDialogSync({
         properties: ['openDirectory']
@@ -59,12 +62,15 @@ app.whenReady().then(() => {
         const objSettings = JSON.parse(strSettings)
 
         mainWindow.webContents.once('dom-ready', () => {
+            // Main to renderer IPC
             mainWindow.webContents.send('user-settings', objSettings.MusicFolder)
         })
     }
 
+    // Two-way IPC
     ipcMain.handle('dialog:openFolder', handleFolderOpen)
 
+    // Renderer to Main
     ipcMain.on('save-settings', (event, strPath) => {
         const newSettings = {
             MusicFolder: strPath
